@@ -1,6 +1,10 @@
 
 # MASt3R-SLAM for Rosario v2 dataset
 
+<p align="center">
+    <img src="./images/running.png" alt="system running" width="100%">
+</p>
+
 ## Setup
 
 ```
@@ -50,7 +54,8 @@ pip install torchcodec==0.1
 ## Run
 
 ```
-
+cd ./MASt3R-SLAM/
+HSA_ENABLE_IPC_MODE_LEGACY=0 HSA_OVERRIDE_GFX_VERSION=10.3.0 python ./main.py --dataset '../dataset/2023-12-26-15-48-38'  --config ../config/rosariov2.yaml
 ```
 
 If you get an error regarding `torch.AcceleratorError: HIP error: invalid device function` use:

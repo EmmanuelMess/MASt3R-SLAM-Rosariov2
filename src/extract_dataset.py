@@ -43,7 +43,7 @@ def main():
             os.makedirs(f"{args.output}/rgb", exist_ok=True)
             
             rgb.write("# color images\n")
-            rgb.write(f"# file: '{args.bag}\n'")
+            rgb.write(f"# file: '{args.bag}'\n")
             rgb.write("# timestamp filename\n")
             
             connections = [x for x in reader.connections if x.topic == rgb_image_topic]
