@@ -6,6 +6,8 @@ import os
 
 import cv2
 
+import numpy as np
+
 from rosbags.rosbag2 import Reader
 from rosbags.typesys import Stores, get_typestore
 
@@ -24,7 +26,7 @@ def main():
     typestore = get_typestore(Stores.LATEST)
 
     # Create reader instance and open for reading.
-    with Reader(args.bag) as reader:        
+    with Reader(args.bag) as reader:
         print("Writing IMU data")    
         with open(f"{args.output}/accelerometer.txt", "wt") as imu:
             imu.write("# accelerometer data\n")
@@ -52,7 +54,7 @@ def main():
                 rgb.write(f"{timestamp * 1e-9} {path}\n")
                 
                 success = cv2.imwrite(f"{args.output}/{path}", msg.data.reshape(msg.height, msg.width, 3))
-                
+        
         print("Writing depth data")    
         with open(f"{args.output}/depth.txt", "wt") as depth:
             os.makedirs(f"{args.output}/depth", exist_ok=True)
@@ -67,7 +69,10 @@ def main():
                 msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
                 depth.write(f"{timestamp * 1e-9} {path}\n")
                 
-                success = cv2.imwrite(f"{args.output}/{path}", msg.data.reshape(msg.height, msg.width))
+                images = msg.data.reshape(msg.height, msg.width, 2)
+                image = np.uint16(images[:, :, 1]) * (2**8) + np.uint16(images[:, :, 0])
+
+                success = cv2.imwrite(f"{args.output}/{path}", image)
            
 if __name__ == '__main__':
     main()

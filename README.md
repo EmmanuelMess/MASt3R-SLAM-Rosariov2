@@ -3,7 +3,9 @@
 
 ## Setup
 
+```
 git submodule update --init --recursive
+```
 
 Get 2023-12-26-15-48-38.compressed.bag from https://cifasis.github.io/rosariov2/.
 
