@@ -1,7 +1,9 @@
 
 # MASt3R-SLAM for Rosario v2 dataset
 
-<img align="center" src="./images/running.png" alt="system running" width="500px">
+<p align="center">
+    <img src="./images/turn.png" alt="system running" width="1024px">
+</p>
 
 ## Setup
 
@@ -20,7 +22,10 @@ python3 -m pip install -r requirements.txt
 ```
 rosbags-convert --src ./bags/zavalla2023/rosbags/2023-12-26-15-48-38.compressed.bag --src-typestore ros1_noetic --dst ./bags/2023-12-26-15-48-38 --dst-typestore ros2_jazzy
 
-python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dataset/2023-12-26-15-48-38
+python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dataset/rosario/2023-12-26-15-48-38
+
+# Only the first turn
+python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dataset/rosario/2023-12-26-15-48-38-A --start 1703616680.0 --end 1703616720.0 
 ```
 
 ```
@@ -54,7 +59,10 @@ pip install torchcodec==0.1
 ```
 source .venv/bin/activate
 cd ./MASt3R-SLAM/
-python ./main.py --dataset '../dataset/rosario/2023-12-26-15-48-38'  --config ../config/rosariov2.yaml --kf-buffer 128
+python ./main.py --dataset '../dataset/rosario/2023-12-26-15-48-38'  --config ../config/rosariov2.yaml
+
+# Or for just a the first turn 
+python ./main.py --dataset '../dataset/rosario/2023-12-26-15-48-38-A'  --config ../config/rosariov2.yaml --kf-buffer 64
 ```
 
 If you get an error regarding `torch.AcceleratorError: HIP error: invalid device function` use:
@@ -66,6 +74,13 @@ export HSA_ENABLE_IPC_MODE_LEGACY=0
 
 If you run out of VRAM try to reduce the `kf_buffer`.
 
+If you have the error `Memory access fault by GPU node-1 (Agent handle: ...) on address .... Reason: Page not present or supervisor privilege.`, use this to triage it:
+
+```
+export HCC_SERIALIZE_KERNEL=0x3
+export HCC_SERIALIZE_COPY=0x3
+export HIP_TRACE_API=0x2
+```
 
 ## Reference 
 

@@ -6,10 +6,10 @@ dataset:
   center_principle_point: True
 
 matching:
-  max_iter: 20
+  max_iter: 10
   lambda_init: 1e-8
   convergence_thresh: 1e-6
-  dist_thresh: 1e0 # distance in 3D space
+  dist_thresh: 1e-1 # distance in 3D space
   radius: 3
   dilation_max: 5 # Right now starts from max and iteratively decreases until 1
 
@@ -50,7 +50,7 @@ local_opt:
   use_cuda: True
 
 retrieval:
-  k: 4
+  k: 10
   min_thresh: 5e-3
 
 reloc:
