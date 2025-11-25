@@ -26,7 +26,7 @@ python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dat
 ```
 # Pytorch (see https://pytorch.org/)
 # CPU
-export TORCH_INDEX=https://download.pytHSA_ENABLE_IPC_MODE_LEGACY=0orch.org/whl/cpu
+export TORCH_INDEX=https://download.pytorch.org/whl/cpu
 
 # ROCm
 export TORCH_INDEX=https://download.pytorch.org/whl/rocm6.3
@@ -54,7 +54,7 @@ pip install torchcodec==0.1
 ```
 source .venv/bin/activate
 cd ./MASt3R-SLAM/
-HSA_ENABLE_IPC_MODE_LEGACY=0 HSA_OVERRIDE_GFX_VERSION=10.3.0 python ./main.py --dataset '../dataset/2023-12-26-15-48-38'  --config ../config/rosariov2.yaml
+python ./main.py --dataset '../dataset/rosario/2023-12-26-15-48-38'  --config ../config/rosariov2.yaml --kf-buffer 128
 ```
 
 If you get an error regarding `torch.AcceleratorError: HIP error: invalid device function` use:
@@ -64,7 +64,7 @@ export HSA_OVERRIDE_GFX_VERSION=10.3.0
 export HSA_ENABLE_IPC_MODE_LEGACY=0
 ```
 
-
+If you run out of VRAM try to reduce the `kf_buffer`.
 
 
 ## Reference 
