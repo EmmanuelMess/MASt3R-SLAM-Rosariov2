@@ -52,6 +52,7 @@ pip install torchcodec==0.1
 ## Run
 
 ```
+source .venv/bin/activate
 cd ./MASt3R-SLAM/
 HSA_ENABLE_IPC_MODE_LEGACY=0 HSA_OVERRIDE_GFX_VERSION=10.3.0 python ./main.py --dataset '../dataset/2023-12-26-15-48-38'  --config ../config/rosariov2.yaml
 ```
