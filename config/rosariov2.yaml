@@ -1,7 +1,7 @@
 use_calib: False
-single_thread: False
+single_thread: True  # Try to not lose track of the KFs
 dataset:
-  subsample: 1
+  subsample: 15  # Camera is 15 FPS, try 1 FPS for tracking
   img_downsample: 1
   center_principle_point: True
 
@@ -50,7 +50,7 @@ local_opt:
   use_cuda: True
 
 retrieval:
-  k: 10
+  k: 5
   min_thresh: 5e-3
 
 reloc:

@@ -25,7 +25,7 @@ rosbags-convert --src ./bags/zavalla2023/rosbags/2023-12-26-15-48-38.compressed.
 python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dataset/rosario/2023-12-26-15-48-38
 
 # Only the first turn
-python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dataset/rosario/2023-12-26-15-48-38-A --start 1703616680.0 --end 1703616720.0 
+python3 ./src/extract_dataset.py --bag ./bags/2023-12-26-15-48-38 --output ./dataset/rosario/2023-12-26-15-48-38-A --start 1703616680.0 --end 1703616780.0 
 ```
 
 ```
