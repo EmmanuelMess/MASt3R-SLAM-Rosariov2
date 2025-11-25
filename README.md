@@ -1,9 +1,7 @@
 
 # MASt3R-SLAM for Rosario v2 dataset
 
-<p align="center">
-    <img src="./images/running.png" alt="system running" width="100%">
-</p>
+<img align="center" src="./images/running.png" alt="system running" width="500px">
 
 ## Setup
 
